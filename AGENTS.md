@@ -11,3 +11,8 @@
 
 - Keep shared portal appearance and account forms in reusable frontend components, with separate content routes for home, sign-in, and sign-up, so both account pages stay visually consistent.
 - Account forms are appearance-only until real authentication is requested; never simulate a successful login or account creation.
+- Administrator access uses Supabase Auth and a named protected /admin route, with role checks inside every directory and management server function; route gates alone do not protect data.
+- Store privilege roles separately from profiles and leave role writes service-only; signup metadata must never grant administrator access.
+- Provision initial administrators only through trusted local tooling, never a public bootstrap endpoint; username-only login maps a fixed public handle to a synthetic email.
+- Keep ordinary signup appearance-only until requested; administrator sign-in is real and shares the existing account form.
+- Preserve the identity-transition root subscriber and bearer middleware; sign-out cancels and clears protected queries before ending the session.
