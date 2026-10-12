@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep shared portal appearance and account forms in reusable frontend components, with separate content routes for home, sign-in, and sign-up, so both account pages stay visually consistent.
+- Account forms are appearance-only until real authentication is requested; never simulate a successful login or account creation.
