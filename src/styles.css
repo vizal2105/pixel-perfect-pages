@@ -173,7 +173,7 @@
   --admin: oklch(0.61 0.15 62);
   --grid-line: oklch(0.76 0.14 164 / 8%);
   --grid-dot: oklch(0.72 0.14 164 / 22%);
-  --portal-glow: oklch(0.95 0.05 165);
+  --portal-glow: oklch(0.97 0.032 165);
   --portal-base: oklch(0.99 0.01 165);
   --role-surface: oklch(1 0 0 / 94%);
   --auth-action: oklch(0.35 0.075 165);
@@ -183,6 +183,8 @@
 .dark {
   --background: oklch(0.14 0.016 164);
   --foreground: oklch(0.97 0.008 160);
+  --primary: oklch(0.61 0.145 164);
+  --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.27 0.035 256);
   --secondary-foreground: oklch(0.93 0.025 250);
   --muted-foreground: oklch(0.68 0.065 245);
