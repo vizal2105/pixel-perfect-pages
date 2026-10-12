@@ -213,7 +213,7 @@
 .portal-nav { display: flex; align-items: center; gap: 8px; }
 .dashboard-nav { display: flex; align-items: center; gap: 4px; padding: 3px; border: 1px solid color-mix(in oklch, var(--brand) 25%, transparent); border-radius: 6px; background: var(--secondary); }
 .dashboard-caption { font-size: 7px; padding: 0 6px; color: var(--muted-foreground); font-family: monospace; }
-.portal-hero { flex: 1; min-height: 488px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 32px 20px 66px; }
+.portal-hero { flex: 1; min-height: 488px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 46px 20px 52px; }
 .archive-badge { display: inline-flex; align-items: center; gap: 7px; border: 1px solid color-mix(in oklch, var(--brand) 45%, transparent); border-radius: 24px; padding: 5px 12px; font-size: 9px; letter-spacing: 1.3px; font-weight: 700; color: var(--primary); background: var(--secondary); }
 .archive-badge::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--primary); }
 .portal-title { font-family: var(--font-display); font-size: 48px; font-weight: 500; line-height: 1.1; margin: 28px 0 23px; }
@@ -228,7 +228,7 @@
 .portal-role h2 { font-family: var(--font-display); font-size: 21px; font-weight: 600; margin: 12px 0 7px; }
 .portal-role p { font-size: 12px; line-height: 19px; color: var(--muted-foreground); margin: 0; }
 .portal-footer { text-align: center; font-size: 10px; color: var(--placeholder); height: 40px; display: grid; place-items: center; }
-.auth-page { min-height: 100svh; display: grid; grid-template-columns: 31.5% 1fr; }
+.auth-page { min-height: 100svh; display: grid; grid-template-columns: 31.5% minmax(0, 1fr); }
 .auth-sidebar { position: relative; min-height: 100svh; padding: 44px 46px; display: flex; flex-direction: column; background-color: var(--panel); background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 26px 26px; color: var(--panel-foreground); border-right: 1px solid color-mix(in oklch, var(--brand) 25%, transparent); }
 .auth-sidebar .logo-icon { background: transparent; width: 24px; height: 24px; color: var(--brand); }
 .auth-sidebar .logo-icon svg { width: 14px; height: 14px; }
@@ -241,7 +241,7 @@
 .auth-story h2 span { color: var(--brand); font-style: italic; }
 .auth-story p { font-size: 12px; line-height: 19px; color: var(--panel-muted); margin: 0; }
 .auth-sidebar-footer { padding-top: 22px; border-top: 1px solid var(--grid-line); font-size: 9px; line-height: 17px; color: var(--primary); }
-.auth-main { position: relative; display: flex; align-items: center; justify-content: center; padding: 68px 28px; }
+.auth-main { position: relative; min-width: 0; display: flex; align-items: center; justify-content: center; padding: 68px 28px; }
 .auth-form { width: 354px; max-width: 100%; }
 .auth-form h1 { font-family: var(--font-display); font-size: 28px; font-weight: 500; line-height: 1.2; margin: 0 0 5px; }
 .auth-subtitle { margin: 0 0 22px; font-size: 12px; line-height: 19px; color: var(--muted-foreground); }
@@ -257,7 +257,11 @@
 .role-choice { display: flex; gap: 9px; align-items: flex-start; border: 1px solid var(--border); border-radius: 8px; padding: 11px 12px; margin-bottom: 8px; min-height: 55px; cursor: pointer; }
 .role-choice:last-child { margin-bottom: 0; }
 .role-choice:has(input:checked) { border-color: var(--primary); background: color-mix(in oklch, var(--primary) 2%, var(--background)); }
-.role-choice input { accent-color: var(--primary); width: 13px; height: 13px; margin: 2px 0 0; flex-shrink: 0; }
+.role-choice input { appearance: none; width: 13px; height: 13px; margin: 2px 0 0; flex-shrink: 0; border: 1px solid var(--border); border-radius: 50%; background: transparent; }
+.role-choice input:checked { border-color: var(--primary); background: radial-gradient(circle, var(--primary) 0 3px, transparent 3.5px); }
+.role-choice input:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+.dark .role-choice { border-color: var(--panel-muted); }
+.dark .role-choice:has(input:checked) { border-color: var(--primary); }
 .role-choice strong { display: block; font-size: 12px; font-weight: 700; line-height: 16px; }
 .role-choice small { display: block; color: var(--muted-foreground); font-size: 10px; line-height: 15px; }
 .auth-alternate { text-align: center; font-size: 10px; color: var(--muted-foreground); margin-top: 21px; }
@@ -281,7 +285,7 @@
   .portal-roles-inner { grid-template-columns: 1fr; }
   .portal-role { min-height: auto; padding: 22px 28px; }
   .portal-role + .portal-role { border-left: 0; border-top: 1px solid var(--grid-line); }
-  .auth-page { grid-template-columns: 1fr; }
+  .auth-page { grid-template-columns: minmax(0, 1fr); }
   .auth-sidebar { min-height: auto; padding: 24px; }
   .auth-sidebar-header { flex-wrap: nowrap; }
   .auth-story { padding: 28px 0 0; }
