@@ -265,7 +265,6 @@
 .auth-alternate { text-align: center; font-size: 10px; color: var(--muted-foreground); margin-top: 21px; }
 .auth-alternate a { color: var(--foreground); text-decoration: underline; margin-left: 6px; }
 .form-notice { font-size: 12px; line-height: 18px; color: var(--muted-foreground); margin-top: 12px; }
-.gate-menu { position: absolute; bottom: 57px; right: 20px; background: var(--secondary); border: 1px solid var(--border); padding: 8px; border-radius: 6px; width: 190px; box-shadow: var(--soft-shadow); }
 @media (max-width: 900px) {
   .portal-header { padding-inline: 24px; }
   .auth-sidebar { padding-inline: 28px; }

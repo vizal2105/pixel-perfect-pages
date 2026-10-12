@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BookOpen, Moon, Sun, Eye, EyeOff, Layers } from "lucide-react";
+import { BookOpen, Moon, Sun, Eye, EyeOff } from "lucide-react";
 import { createContext, useContext, useEffect, useState, type ReactNode, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -36,7 +36,6 @@ export function AccountPage({ signup = false }: { signup?: boolean }) {
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState("Student");
   const [notice, setNotice] = useState("");
-  const [gateOpen, setGateOpen] = useState(false);
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setNotice("Account access is not connected yet.");
@@ -60,8 +59,6 @@ export function AccountPage({ signup = false }: { signup?: boolean }) {
         {notice && <p className="form-notice" role="status">{notice}</p>}
         <div className="auth-alternate">{signup ? <>Already registered?<Link to="/sign-in">Sign in</Link></> : <>No account yet?<Link to="/sign-up">Create one</Link></>}</div>
       </form>
-      <Button variant="compact" size="sm" className="absolute bottom-5 right-5 text-[10px]" onClick={() => setGateOpen(!gateOpen)} aria-expanded={gateOpen}><Layers className="text-primary" />Role &amp; Gate Switcher</Button>
-      {gateOpen && <div className="gate-menu">{accountRoles.map((item) => <Button key={item.name} variant="ghost" size="sm" className="w-full justify-start text-xs" asChild><Link to="/sign-up" onClick={() => { setRole(item.name); setGateOpen(false); }}>{item.name}</Link></Button>)}</div>}
     </section>
   </main></PortalTheme>;
 }
