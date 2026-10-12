@@ -1,24 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, GraduationCap, LogIn, ShieldCheck, User, UserPlus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { PortalLogo, PortalTheme, ThemeToggle, pageHead } from "@/components/portal";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => pageHead("DCRAP | Departmental Capstone and Research Archive Portal", "Every defended paper, prototype, and dataset in one place — preserved, searchable, and credited to the people who made it."),
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const roles = [
+  { title: "Student", Icon: User, text: "Search the shelf, read approved capstones, and cite prior departmental work." },
+  { title: "Graduated Student", Icon: GraduationCap, text: "Submit your capstone or thesis and follow it through review and archiving." },
+  { title: "Faculty", Icon: ShieldCheck, text: "Advise, evaluate, and curate what enters the permanent departmental record." },
+];
+
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  return <PortalTheme><div className="portal-page portal-grid">
+    <header className="portal-header"><PortalLogo /><nav className="portal-nav" aria-label="Portal navigation"><div className="dashboard-nav"><span className="dashboard-caption">DASHBOARDS:</span>{["Student", "Graduating", "Faculty"].map((role) => <Button key={role} variant="ghost" size="nav" asChild><Link to="/sign-in">{role}</Link></Button>)}<Button variant="admin" size="nav" asChild><Link to="/sign-in"><ShieldCheck />Admin</Link></Button></div><ThemeToggle /><Button variant="compact" size="nav" asChild><Link to="/sign-in">Sign in</Link></Button></nav></header>
+    <main className="portal-hero"><div className="archive-badge">DEPARTMENT ARCHIVE</div><h1 className="portal-title">Departmental Capstone and<br />Research Archive Portal</h1><p className="portal-description">Every defended paper, prototype, and dataset in one place –<br />preserved, searchable, and credited to the people who made it.</p><div className="hero-actions"><Button variant="portal" size="action" asChild><Link to="/sign-up"><UserPlus />Create an account<ArrowRight /></Link></Button><Button variant="compact" size="action" asChild><Link to="/sign-in"><LogIn className="text-muted-foreground" />Sign in</Link></Button></div></main>
+    <section className="portal-roles" aria-label="Department roles"><div className="portal-roles-inner">{roles.map(({ title, Icon, text }) => <article className="portal-role" key={title}><span className="role-icon"><Icon /></span><h2>{title}</h2><p>{text}</p></article>)}</div></section>
+    <footer className="portal-footer">Departmental Capstone and Research Archive Portal</footer>
+  </div></PortalTheme>;
 }
