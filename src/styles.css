@@ -211,8 +211,6 @@
 .logo-icon { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid color-mix(in oklch, var(--brand) 45%, transparent); border-radius: 5px; color: var(--primary); background: var(--secondary); }
 .logo-icon svg { width: 17px; height: 17px; }
 .portal-nav { display: flex; align-items: center; gap: 8px; }
-.dashboard-nav { display: flex; align-items: center; gap: 4px; padding: 3px; border: 1px solid color-mix(in oklch, var(--brand) 25%, transparent); border-radius: 6px; background: var(--secondary); }
-.dashboard-caption { font-size: 7px; padding: 0 6px; color: var(--muted-foreground); font-family: monospace; }
 .portal-hero { flex: 1; min-height: 488px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 46px 20px 52px; }
 .archive-badge { display: inline-flex; align-items: center; gap: 7px; border: 1px solid color-mix(in oklch, var(--brand) 45%, transparent); border-radius: 24px; padding: 5px 12px; font-size: 9px; letter-spacing: 1.3px; font-weight: 700; color: var(--primary); background: var(--secondary); }
 .archive-badge::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--primary); }
@@ -277,7 +275,6 @@
 @media (max-width: 640px) {
   .portal-header { height: auto; min-height: 76px; padding: 20px; flex-wrap: wrap; }
   .portal-nav { flex-wrap: wrap; gap: 6px; }
-  .dashboard-nav { order: 3; }
   .portal-hero { min-height: 470px; padding-block: 45px 56px; }
   .portal-title { font-size: 36px; }
   .portal-description br { display: none; }
