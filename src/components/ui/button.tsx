@@ -9,6 +9,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        portal: "bg-primary text-primary-foreground hover:bg-primary/90",
+        compact: "border border-input bg-secondary text-secondary-foreground hover:bg-accent",
+        theme: "border border-primary/30 bg-secondary text-primary hover:bg-accent dark:text-admin",
+        admin: "border border-admin/30 bg-admin/5 text-admin hover:bg-admin/10",
+        auth: "bg-[var(--auth-action)] text-primary-foreground hover:opacity-90",
+        eye: "text-muted-foreground hover:text-foreground",
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
@@ -18,6 +24,11 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
+        nav: "h-6 rounded px-2.5 text-[10px] gap-1 [&_svg]:size-3",
+        mini: "h-5 w-7 rounded [&_svg]:size-3",
+        action: "h-[34px] px-5 text-xs [&_svg]:size-3.5",
+        submit: "h-9 w-full text-xs mt-1.5",
+        eye: "h-[35px] w-9 absolute right-0 top-0 [&_svg]:size-3.5",
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
