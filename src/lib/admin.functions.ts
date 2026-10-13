@@ -1,6 +1,7 @@
 import { createServerFn } from '@tanstack/react-start';
 import { requireSupabaseAuth } from '@/integrations/supabase/auth-middleware';
 import { z } from 'zod';
+import type { Database } from '@/integrations/supabase/types';
 
 export const getAdminDirectory = createServerFn({ method: 'GET' })
   .middleware([requireSupabaseAuth])
@@ -8,7 +9,7 @@ export const getAdminDirectory = createServerFn({ method: 'GET' })
     const { data: allowed, error: roleError } = await context.supabase.rpc('has_role', { _user_id: context.userId, _role: 'admin' });
     if (roleError || !allowed) throw new Error('Administrator access required.');
     const profiles = [];
-    const roles = [];
+    const roles: Pick<Database['public']['Tables']['user_roles']['Row'], 'user_id' | 'role'>[] = [];
     for (let offset = 0; ; offset += 1000) {
       const { data, error } = await context.supabase.from('profiles').select('id,full_name,username,email,student_no,department,status,created_at').order('created_at').range(offset, offset + 999);
       if (error) throw new Error('Unable to load the user directory.');
