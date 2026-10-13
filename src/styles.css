@@ -282,7 +282,7 @@
 .directory-heading h1 { margin: 0 0 3px; font-family: var(--font-sans); font-size: 13px; font-weight: 700; }
 .directory-heading p { margin: 0; color: var(--muted-foreground); font-size: 10px; }
 .directory-tabs { margin: 0 16px 16px; padding: 5px; background: var(--muted); border: 1px solid var(--border); border-radius: 8px; display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 4px; }
-.directory-tabs button { height: 37px; font-size: 11px; padding: 4px; border: 1px solid transparent; }
+.directory-tabs button { height: 37px; font-size: 11px; padding: 4px; border: 1px solid transparent; color: var(--muted-foreground); }
 .directory-tabs button[aria-selected=true] { border-color: color-mix(in oklch,var(--brand) 45%,transparent); background: var(--background); color: var(--primary); box-shadow: var(--soft-shadow); }
 .count { min-width: 19px; height: 17px; padding: 1px 5px; border-radius: 12px; background: var(--border); font-size: 9px; color: var(--muted-foreground); }
 .directory-tabs button[aria-selected=true] .count { background: var(--accent); color: var(--primary); }
