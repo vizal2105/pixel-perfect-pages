@@ -77,6 +77,7 @@ export function AccountPage({ signup = false }: { signup?: boolean }) {
       if (r.includes('admin')) { setSignedIn(true); await navigate({ to: '/admin' }); return; }
       if (profile?.status !== 'approved') { await supabase.auth.signOut(); setNotice('Your account is awaiting administrator approval.'); return; }
       if (r.includes('student')) { setSignedIn(true); await navigate({ to: '/dashboard' }); return; }
+       if (r.includes('graduated_student')) { setSignedIn(true); await navigate({ to: '/graduated-dashboard' }); return; }
       await supabase.auth.signOut(); setNotice('The dashboard for your role is not available yet.');
     } catch { setNotice('Sign-in is unavailable. Please try again.'); }
     finally { setBusy(false); }
