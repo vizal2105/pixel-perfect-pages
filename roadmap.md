@@ -6,3 +6,5 @@
 - [x] Add secure administrator login with username admin and privately chosen password.
 - [x] Add profile storage and protected administrator directory matching the reference in both themes, without sample users.
 - [x] Verify administrator login, directory access, filters, and sign-out.
+- [ ] Add Graduated Student dashboard in both themes without the archive shortcut or sample administrator badge.
+- [ ] Route approved Graduated Student sign-ins to their dashboard and verify account approval access.

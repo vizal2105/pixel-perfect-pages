@@ -352,3 +352,29 @@
 .archived-pill svg { width: 13px; height: 13px; }
 .archived-pill .count { border-radius: 10px; padding: 1px 6px; font-size: 9px; background: color-mix(in oklch, var(--brand) 25%, transparent); }
 @media(max-width: 640px) { .student-search-row { flex-direction: column; } .student-search-foot { flex-wrap: wrap; gap: 10px; } }
+
+/* Graduated Student submit-work dashboard */
+.graduated-page { background-image: radial-gradient(circle, var(--grid-dot) .8px, transparent 1px), linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-position: 12px 12px, 0 0, 0 0; }
+.graduated-page .admin-header-inner { max-width: none; margin-inline: 32px; }
+.graduated-page .portal-logo { font-family: var(--font-display); font-size: 16px; }
+.graduated-page .logo-icon { background: var(--accent); color: var(--primary); }
+.graduated-content { max-width: 1040px; margin: auto; padding: 40px 24px 60px; display: grid; grid-template-columns: minmax(0, 552px) minmax(0, 1fr); gap: 48px; }
+.graduated-content .student-title { margin: 0; }
+.graduated-content .student-subtitle { margin-bottom: 20px; }
+.manuscript-field { display: block; margin-bottom: 13px; min-width: 0; }
+.manuscript-field > span, .manuscript-types legend { display: block; font-size: 10px; margin-bottom: 5px; }
+.manuscript-form .auth-input { height: 37px; }
+.manuscript-types { border: 0; padding: 0; margin: 0 0 13px; }
+.manuscript-types > div, .manuscript-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.manuscript-type { display: flex; justify-content: center; align-items: center; gap: 8px; height: 37px; border: 1px solid var(--input); border-radius: 6px; background: var(--secondary); cursor: pointer; color: var(--muted-foreground); }
+.manuscript-type:has(input:checked) { color: var(--primary); border-color: var(--primary); background: var(--accent); font-weight: 700; }
+.manuscript-type input { margin: 0; accent-color: var(--primary); width: 12px; height: 12px; }
+.manuscript-form .manuscript-abstract { min-height: 105px; height: 105px; padding-block: 10px; resize: vertical; }
+.manuscript-form .manuscript-file { padding: 7px 12px; font-size: 10px; }
+.manuscript-file::file-selector-button { border: 1px solid var(--input); border-radius: 3px; background: var(--secondary); color: var(--foreground); margin-right: 10px; padding: 3px 9px; font: inherit; }
+.manuscript-submit { margin-top: 6px; width: auto; height: 35px; padding: 0 17px; }
+.manuscript-submissions .student-title { font-size: 27px; padding-bottom: 10px; border-bottom: 1px solid var(--grid-line); }
+.manuscript-submissions p { color: var(--muted-foreground); margin-top: 12px; }
+.dark .manuscript-field input[type=date] { color-scheme: dark; }
+@media (max-width: 760px) { .graduated-content { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 28px; } .graduated-page .admin-header-inner { margin-inline: 16px; } }
+@media (max-width: 420px) { .manuscript-pair { grid-template-columns: minmax(0, 1fr); gap: 0; } .graduated-content { padding-inline: 16px; } }

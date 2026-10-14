@@ -14,5 +14,6 @@
 - Administrator access uses Supabase Auth and a named protected /admin route, with role checks inside every directory and management server function; route gates alone do not protect data.
 - Store privilege roles separately from profiles and leave role writes service-only; signup metadata must never grant administrator access.
 - Provision initial administrators only through trusted local tooling, never a public bootstrap endpoint; username-only login maps a fixed public handle to a synthetic email.
-- Keep ordinary signup appearance-only until requested; administrator sign-in is real and shares the existing account form.
+- Student and Graduated Student accounts use the shared real signup form, and sign-in routes approved accounts to their distinct protected dashboards; Faculty has no dashboard yet.
+- Keep the Graduated Student submit-work screen separate from manuscript persistence; never simulate a successful submission before file storage and submission records are implemented.
 - Preserve the identity-transition root subscriber and bearer middleware; sign-out cancels and clears protected queries before ending the session.
