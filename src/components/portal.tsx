@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { useServerFn } from "@tanstack/react-start";
+import { registerAccount } from "@/lib/account.functions";
 import { BookOpen, Moon, Sun, Eye, EyeOff } from "lucide-react";
 import { createContext, useContext, useEffect, useState, type ReactNode, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
@@ -43,10 +45,21 @@ export function AccountPage({ signup = false }: { signup?: boolean }) {
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState("Student");
   const [notice, setNotice] = useState("");
+  const register = useServerFn(registerAccount);
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (signup) { setNotice("Account registration is not connected yet."); return; }
     const fields = new FormData(event.currentTarget);
+    if (signup) {
+      setBusy(true); setNotice('');
+      try {
+        const result = await register({ data: { fullName: String(fields.get('name') ?? ''), email: String(fields.get('email') ?? ''), password: String(fields.get('password') ?? ''), role: role as 'Student', studentNo: String(fields.get('studentNo') ?? '') || undefined } });
+        if (!result.ok) { setNotice(result.message); return; }
+        event.currentTarget?.reset?.();
+        setNotice('Account created. An administrator must approve it before you can sign in.');
+      } catch { setNotice('Unable to create the account. Please check your details.'); }
+      finally { setBusy(false); }
+      return;
+    }
     const login = String(fields.get('email') ?? '').trim().toLowerCase();
     setBusy(true); setNotice('');
     try {
@@ -54,10 +67,16 @@ export function AccountPage({ signup = false }: { signup?: boolean }) {
       if (error) { setNotice('Incorrect username or password.'); return; }
       const { data: userData } = await supabase.auth.getUser();
       if (!userData.user) { setNotice('Unable to verify your account.'); return; }
-      setSignedIn(true);
-      const { data: isAdmin, error: roleError } = await supabase.rpc('has_role', { _user_id: userData.user.id, _role: 'admin' });
-      if (roleError || !isAdmin) { setNotice('Administrator access is required.'); return; }
-      await navigate({ to: '/admin' });
+      const uid = userData.user.id;
+      const [{ data: roles }, { data: profile }] = await Promise.all([
+        supabase.from('user_roles').select('role').eq('user_id', uid),
+        supabase.from('profiles').select('status').eq('id', uid).maybeSingle(),
+      ]);
+      const r = roles?.map(x => x.role) ?? [];
+      if (r.includes('admin')) { setSignedIn(true); await navigate({ to: '/admin' }); return; }
+      if (profile?.status !== 'approved') { await supabase.auth.signOut(); setNotice('Your account is awaiting administrator approval.'); return; }
+      if (r.includes('student')) { setSignedIn(true); await navigate({ to: '/dashboard' }); return; }
+      await supabase.auth.signOut(); setNotice('The dashboard for your role is not available yet.');
     } catch { setNotice('Sign-in is unavailable. Please try again.'); }
     finally { setBusy(false); }
   };
