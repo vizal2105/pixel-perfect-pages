@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { queryOptions, useSuspenseQuery, useQueryClient } from '@tanstack/react-query';
 import { useState, type FormEvent } from 'react';
 import { FileText, LogOut, Upload } from 'lucide-react';
@@ -22,7 +22,7 @@ export const Route = createFileRoute('/_authenticated/graduated-dashboard')({
 });
 
 function GraduatedAccessError() {
-  return <PortalTheme><main className="admin-page"><p className="directory-message" role="alert">An approved Graduated Student account is required to open this dashboard.</p><Button asChild variant="link"><a href="/sign-in">Return to sign in</a></Button></main></PortalTheme>;
+  return <PortalTheme><main className="admin-page"><p className="directory-message" role="alert">An approved Graduated Student account is required to open this dashboard.</p><Button asChild variant="link"><Link to="/sign-in">Return to sign in</Link></Button></main></PortalTheme>;
 }
 
 function GraduatedDashboard() {
