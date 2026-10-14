@@ -48,13 +48,14 @@ export function AccountPage({ signup = false }: { signup?: boolean }) {
   const register = useServerFn(registerAccount);
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const fields = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const fields = new FormData(form);
     if (signup) {
       setBusy(true); setNotice('');
       try {
         const result = await register({ data: { fullName: String(fields.get('name') ?? ''), email: String(fields.get('email') ?? ''), password: String(fields.get('password') ?? ''), role: role as 'Student', studentNo: String(fields.get('studentNo') ?? '') || undefined } });
         if (!result.ok) { setNotice(result.message); return; }
-        event.currentTarget?.reset?.();
+        form.reset();
         setNotice('Account created. An administrator must approve it before you can sign in.');
       } catch { setNotice('Unable to create the account. Please check your details.'); }
       finally { setBusy(false); }
@@ -97,7 +98,7 @@ export function AccountPage({ signup = false }: { signup?: boolean }) {
         <label className="auth-field"><span className="auth-label">{signup ? 'Email' : 'Email or username'}</span><input className="auth-input" type={signup ? 'email' : 'text'} name="email" autoComplete={signup ? 'email' : 'username'} placeholder={signup ? 'example@gmail.com' : 'Email or username'} required /></label>
 <div className="auth-field"><label htmlFor="password" className="auth-label">Password</label><div className="password-wrap"><input id="password" className="auth-input" type={showPassword ? "text" : "password"} name="password" autoComplete={signup ? "new-password" : "current-password"} placeholder="••••••••" required minLength={signup ? 8 : 1} /><Button type="button" variant="eye" size="eye" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"} title={showPassword ? "Hide password" : "Show password"}>{showPassword ? <Eye /> : <EyeOff />}</Button></div></div>
         {signup && (role === "Student" || role === "Graduated Student") && <label className="auth-field"><span className="auth-label">Student No.</span><input className="auth-input" name="studentNo" autoComplete="off" placeholder="e.g. 2022-01234" required /></label>}
-        <Button variant="auth" size="submit" type="submit" disabled={busy}>{busy ? 'Signing in…' : signup ? "Create account" : "Sign in"}</Button>
+        <Button variant="auth" size="submit" type="submit" disabled={busy}>{busy ? (signup ? 'Creating…' : 'Signing in…') : signup ? "Create account" : "Sign in"}</Button>
         {signedIn && !signup && <div className="auth-alternate"><Button asChild variant="link" size="sm"><Link to="/admin">Admin Control Panel</Link></Button><Button variant="ghost" size="sm" onClick={signOut}>Sign out</Button></div>}
         {notice && <p className="form-notice" role="status">{notice}</p>}
         <div className="auth-alternate">{signup ? <>Already registered?<Link to="/sign-in">Sign in</Link></> : <>No account yet?<Link to="/sign-up">Create one</Link></>}</div>
