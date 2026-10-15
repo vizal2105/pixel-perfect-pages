@@ -16,6 +16,7 @@ import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedFacultyDashboardRouteImport } from './routes/_authenticated/faculty-dashboard'
 import { Route as AuthenticatedGraduatedDashboardRouteImport } from './routes/_authenticated/graduated-dashboard'
 
 const IndexRoute = IndexRouteImport.update({
@@ -52,6 +53,12 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedFacultyDashboardRoute =
+  AuthenticatedFacultyDashboardRouteImport.update({
+    id: '/faculty-dashboard',
+    path: '/faculty-dashboard',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedGraduatedDashboardRoute =
   AuthenticatedGraduatedDashboardRouteImport.update({
     id: '/graduated-dashboard',
@@ -66,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/sign-up': typeof SignUpRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/faculty-dashboard': typeof AuthenticatedFacultyDashboardRoute
   '/graduated-dashboard': typeof AuthenticatedGraduatedDashboardRoute
 }
 export interface FileRoutesByTo {
@@ -75,6 +83,7 @@ export interface FileRoutesByTo {
   '/sign-up': typeof SignUpRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/faculty-dashboard': typeof AuthenticatedFacultyDashboardRoute
   '/graduated-dashboard': typeof AuthenticatedGraduatedDashboardRoute
 }
 export interface FileRoutesById {
@@ -86,6 +95,7 @@ export interface FileRoutesById {
   '/sign-up': typeof SignUpRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/faculty-dashboard': typeof AuthenticatedFacultyDashboardRoute
   '/_authenticated/graduated-dashboard': typeof AuthenticatedGraduatedDashboardRoute
 }
 export interface FileRouteTypes {
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/admin'
     | '/dashboard'
+    | '/faculty-dashboard'
     | '/graduated-dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/admin'
     | '/dashboard'
+    | '/faculty-dashboard'
     | '/graduated-dashboard'
   id:
     | '__root__'
@@ -116,6 +128,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/_authenticated/admin'
     | '/_authenticated/dashboard'
+    | '/_authenticated/faculty-dashboard'
     | '/_authenticated/graduated-dashboard'
   fileRoutesById: FileRoutesById
 }
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/faculty-dashboard': {
+      id: '/_authenticated/faculty-dashboard'
+      path: '/faculty-dashboard'
+      fullPath: '/faculty-dashboard'
+      preLoaderRoute: typeof AuthenticatedFacultyDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/graduated-dashboard': {
       id: '/_authenticated/graduated-dashboard'
       path: '/graduated-dashboard'
@@ -191,12 +211,14 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedFacultyDashboardRoute: typeof AuthenticatedFacultyDashboardRoute
   AuthenticatedGraduatedDashboardRoute: typeof AuthenticatedGraduatedDashboardRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedFacultyDashboardRoute: AuthenticatedFacultyDashboardRoute,
   AuthenticatedGraduatedDashboardRoute: AuthenticatedGraduatedDashboardRoute,
 }
 
