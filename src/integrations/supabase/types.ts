@@ -14,6 +14,71 @@ export type Database = {
   }
   public: {
     Tables: {
+      manuscripts: {
+        Row: {
+          abstract: string
+          authors: string
+          completed_on: string
+          created_at: string
+          file_name: string
+          file_path: string
+          id: string
+          keywords: string
+          kind: string
+          program: string
+          ref_no: number
+          reviewer_notes: string
+          status: string
+          submitter_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          abstract: string
+          authors: string
+          completed_on: string
+          created_at?: string
+          file_name: string
+          file_path: string
+          id?: string
+          keywords?: string
+          kind: string
+          program: string
+          ref_no?: number
+          reviewer_notes?: string
+          status?: string
+          submitter_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          abstract?: string
+          authors?: string
+          completed_on?: string
+          created_at?: string
+          file_name?: string
+          file_path?: string
+          id?: string
+          keywords?: string
+          kind?: string
+          program?: string
+          ref_no?: number
+          reviewer_notes?: string
+          status?: string
+          submitter_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "manuscripts_submitter_id_fkey"
+            columns: ["submitter_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -80,6 +145,13 @@ export type Database = {
     }
     Functions: {
       has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_approved_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
