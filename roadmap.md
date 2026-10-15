@@ -8,3 +8,4 @@
 - [x] Verify administrator login, directory access, filters, and sign-out.
 - [x] Add Graduated Student dashboard in both themes without the archive shortcut or sample administrator badge.
 - [x] Route approved Graduated Student sign-ins to their dashboard and verify account approval access.
+- [x] Add Faculty review queue dashboard (light/dark, no sample manuscripts) and route approved Faculty sign-ins to it.

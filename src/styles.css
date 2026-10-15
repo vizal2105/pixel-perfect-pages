@@ -378,3 +378,18 @@
 .dark .manuscript-field input[type=date] { color-scheme: dark; }
 @media (max-width: 760px) { .graduated-content { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 28px; } .graduated-page .admin-header-inner { margin-inline: 16px; } }
 @media (max-width: 420px) { .manuscript-pair { grid-template-columns: minmax(0, 1fr); gap: 0; } .graduated-content { padding-inline: 16px; } }
+
+/* Faculty review queue */
+.review-content { width: min(806px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 64px; }
+.review-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 6px; margin-top: 22px; border: 1px solid var(--border); border-radius: 14px; background: var(--muted); }
+.review-tab { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border: 1px solid transparent; border-radius: 10px; background: transparent; color: var(--muted-foreground); font-size: 13px; font-weight: 500; cursor: pointer; }
+.review-tab svg { width: 15px; height: 15px; }
+.review-tab[data-kind="pending"] svg { color: oklch(0.75 0.16 70); }
+.review-tab[data-kind="approved"] svg { color: var(--primary); }
+.review-tab[data-kind="rejected"] svg { color: oklch(0.6 0.2 20); }
+.review-tab .count { min-width: 20px; padding: 1px 6px; border-radius: 999px; background: var(--border); font-size: 10px; }
+.review-tab[aria-selected="true"] { background: var(--background); }
+.review-tab[data-kind="pending"][aria-selected="true"] { border-color: oklch(0.85 0.12 85); color: oklch(0.7 0.15 70); }
+.review-tab[data-kind="approved"][aria-selected="true"] { border-color: var(--primary); color: var(--primary); }
+.review-tab[data-kind="rejected"][aria-selected="true"] { border-color: oklch(0.8 0.1 20); color: oklch(0.6 0.2 20); }
+.review-empty { margin-top: 22px; padding: 36px 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); text-align: center; color: var(--muted-foreground); font-size: 13px; }
