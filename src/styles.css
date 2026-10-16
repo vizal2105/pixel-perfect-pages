@@ -393,3 +393,28 @@
 .review-tab[data-kind="approved"][aria-selected="true"] { border-color: var(--primary); color: var(--primary); }
 .review-tab[data-kind="rejected"][aria-selected="true"] { border-color: oklch(0.8 0.1 20); color: oklch(0.6 0.2 20); }
 .review-empty { margin-top: 22px; padding: 36px 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); text-align: center; color: var(--muted-foreground); font-size: 13px; }
+
+/* Manuscript cards */
+.sub-card { margin-top: 14px; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
+.sub-card h3 { margin-top: 10px; font-weight: 700; font-size: 14px; }
+.manuscript-submissions .sub-card p.ms-line { margin-top: 6px; }
+.ms-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 11px; }
+.ms-meta code { color: var(--muted-foreground); font-size: 11px; }
+.ms-kind { padding: 1px 8px; border: 1px solid var(--primary); border-radius: 6px; color: var(--primary); font-weight: 600; font-size: 10px; }
+.ms-status { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px; border-radius: 999px; font-weight: 600; font-size: 10px; border: 1px solid; }
+.sub-card .ms-status { margin-left: auto; }
+.ms-status svg { width: 11px; height: 11px; }
+.ms-status[data-status="pending"] { color: oklch(0.6 0.13 70); border-color: oklch(0.85 0.12 85); background: oklch(0.85 0.12 85 / 0.15); }
+.ms-status[data-status="approved"] { color: var(--primary); border-color: var(--primary); background: color-mix(in oklch, var(--primary) 12%, transparent); }
+.ms-status[data-status="rejected"] { color: oklch(0.6 0.2 20); border-color: oklch(0.8 0.1 20); background: oklch(0.8 0.1 20 / 0.15); }
+.ms-muted { color: var(--muted-foreground); }
+.ms-line { color: var(--muted-foreground); font-size: 12px; }
+.ms-card { margin-top: 22px; padding: 22px; border: 1px solid color-mix(in oklch, var(--primary) 25%, var(--border)); border-radius: 14px; background: var(--card); }
+.ms-title { margin: 12px 0 8px; font-family: var(--font-display, serif); font-size: 24px; line-height: 1.3; }
+.ms-abstract { margin-top: 10px; font-size: 12px; color: var(--muted-foreground); }
+.ms-abstract summary { cursor: pointer; }
+.ms-abstract p { margin-top: 6px; white-space: pre-wrap; }
+.ms-notes { margin-top: 14px; padding: 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--muted); font-size: 12px; }
+.ms-actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+.ms-actions > div { display: flex; gap: 8px; align-items: center; }
+.ms-reject { color: oklch(0.6 0.2 20); border-color: oklch(0.8 0.1 20); }
