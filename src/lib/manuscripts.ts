@@ -15,6 +15,12 @@ export async function listManuscripts(): Promise<Manuscript[]> {
   return data ?? [];
 }
 
+export async function listApprovedManuscripts(): Promise<Manuscript[]> {
+  const { data, error } = await table().select('*').eq('status', 'approved').order('created_at', { ascending: false });
+  if (error) throw new Error('Unable to load the archive.');
+  return data ?? [];
+}
+
 export async function submitManuscript(form: FormData) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error('Please sign in again.');
