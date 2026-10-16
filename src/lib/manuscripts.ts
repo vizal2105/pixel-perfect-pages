@@ -35,7 +35,7 @@ export async function submitManuscript(form: FormData) {
 
 export async function reviewManuscript(id: string, status: Manuscript['status'], notes?: string) {
   const patch: Record<string, string> = { status };
-  if (notes !== undefined) patch.reviewer_notes = notes.slice(0, 1000);
+  if (notes !== undefined) patch['reviewer_notes'] = notes.slice(0, 1000);
   const { error } = await table().update(patch).eq('id', id);
   if (error) throw new Error('Unable to update the manuscript.');
 }
