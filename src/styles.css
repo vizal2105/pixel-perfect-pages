@@ -418,3 +418,5 @@
 .ms-actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
 .ms-actions > div { display: flex; gap: 8px; align-items: center; }
 .ms-reject { color: oklch(0.6 0.2 20); border-color: oklch(0.8 0.1 20); }
+
+.archive-results { margin-top: 8px; }
